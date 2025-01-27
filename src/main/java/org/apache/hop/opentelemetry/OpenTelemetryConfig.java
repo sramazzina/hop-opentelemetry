@@ -27,13 +27,11 @@ import org.apache.commons.lang.StringUtils;
 /** Configuration properties for using OTLP. */
 public class OpenTelemetryConfig {
 
-  @Setter
-  @Getter
-  private String serviceName;
+  @Setter @Getter private String serviceName;
 
   @Getter @Setter private String endpoint;
 
-    /**
+  /**
    * Set the OLTP transport protocol.
    *
    * <p>Options MUST be one of:
