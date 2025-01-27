@@ -17,7 +17,7 @@ http://www.apache.org/licenses/LICENSE-2.0
     <parent>
         <groupId>org.apache.hop</groupId>
         <artifactId>hop</artifactId>
-        <version>2.10.0-SNAPSHOT</version>
+        <version>2.12.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>hop-opentelemetry</artifactId>
@@ -28,51 +28,58 @@ http://www.apache.org/licenses/LICENSE-2.0
     <url>http://hop.apache.org</url>
 
     <properties>
-        <hop.version>2.10.0-SNAPSHOT</hop.version>
+        <hop.version>2.12.0-SNAPSHOT</hop.version>
         <jacoco-maven-plugin.version>0.8.6</jacoco-maven-plugin.version>
         <license.licenseName>apache_v2</license.licenseName>
+
+        <lombok.version>1.18.36</lombok.version>
         <maven.compiler.source>17</maven.compiler.source>
-        <sonar.coverage.jacoco.xmlReportPaths>${basedir}/${aggregate.report.dir}</sonar.coverage.jacoco.xmlReportPaths>
+        <opentelemetry.instrumentation.api.semconv.version>1.33.6-alpha</opentelemetry.instrumentation.api.semconv.version>
+        <opentelemetry.instrumentation.api.version>2.12.0</opentelemetry.instrumentation.api.version>
+        <opentelemetry.semconv.incubating.version>1.29.0-alpha</opentelemetry.semconv.incubating.version>
+        <opentelemetry.version>1.46.0</opentelemetry.version>
+
+        <!-- sonar.coverage.jacoco.xmlReportPaths>${basedir}</sonar.coverage.jacoco.xmlReportPaths>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.organization>nadment</sonar.organization>
-        <sonar.projectKey>${project.artifactId}</sonar.projectKey>
+        <sonar.projectKey>${project.artifactId}</sonar.projectKey -->
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>io.opentelemetry</groupId>
             <artifactId>opentelemetry-exporter-logging</artifactId>
-            <version>1.41.0</version>
+            <version>${opentelemetry.version}</version>
         </dependency>
         <dependency>
             <groupId>io.opentelemetry</groupId>
             <artifactId>opentelemetry-exporter-otlp</artifactId>
-            <version>1.41.0</version>
+            <version>${opentelemetry.version}</version>
         </dependency>
         <dependency>
             <groupId>io.opentelemetry</groupId>
             <artifactId>opentelemetry-sdk</artifactId>
-            <version>1.41.0</version>
+            <version>${opentelemetry.version}</version>
         </dependency>
         <dependency>
             <groupId>io.opentelemetry</groupId>
             <artifactId>opentelemetry-sdk-extension-autoconfigure</artifactId>
-            <version>1.41.0</version>
+            <version>${opentelemetry.version}</version>
         </dependency>
         <dependency>
             <groupId>io.opentelemetry.instrumentation</groupId>
             <artifactId>opentelemetry-instrumentation-api</artifactId>
-            <version>2.5.0</version>
+            <version>${opentelemetry.instrumentation.api.version}</version>
         </dependency>
         <dependency>
             <groupId>io.opentelemetry.instrumentation</groupId>
             <artifactId>opentelemetry-instrumentation-api-semconv</artifactId>
-            <version>1.33.4-alpha</version>
+            <version>${opentelemetry.instrumentation.api.semconv.version}</version>
         </dependency>
         <dependency>
             <groupId>io.opentelemetry.semconv</groupId>
             <artifactId>opentelemetry-semconv-incubating</artifactId>
-            <version>1.25.0-alpha</version>
+            <version>${opentelemetry.semconv.incubating.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.hop</groupId>
@@ -90,6 +97,12 @@ http://www.apache.org/licenses/LICENSE-2.0
             <groupId>org.apache.hop</groupId>
             <artifactId>hop-ui</artifactId>
             <version>${hop.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -157,6 +170,19 @@ http://www.apache.org/licenses/LICENSE-2.0
                         <phase>verify</phase>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
             </plugin>
 
         </plugins>

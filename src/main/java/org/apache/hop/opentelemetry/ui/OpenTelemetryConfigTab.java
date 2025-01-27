@@ -15,7 +15,7 @@
  * limitations under the License.
  *
  */
-package org.apache.hop.opentelemetry;
+package org.apache.hop.opentelemetry.ui;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,6 +24,8 @@ import org.apache.hop.core.gui.plugin.GuiPlugin;
 import org.apache.hop.core.gui.plugin.tab.GuiTab;
 import org.apache.hop.core.variables.Variables;
 import org.apache.hop.i18n.BaseMessages;
+import org.apache.hop.opentelemetry.OpenTelemetryConfig;
+import org.apache.hop.opentelemetry.OpenTelemetryPlugin;
 import org.apache.hop.ui.core.ConstUi;
 import org.apache.hop.ui.core.PropsUi;
 import org.apache.hop.ui.core.dialog.ErrorDialog;

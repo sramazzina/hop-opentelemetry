@@ -20,43 +20,40 @@ package org.apache.hop.opentelemetry;
 import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.commons.lang.StringUtils;
 
 /** Configuration properties for using OTLP. */
 public class OpenTelemetryConfig {
 
+  @Setter
+  @Getter
   private String serviceName;
 
-  /** URL to the OTel collector's receiver. */
-  private String endpoint;
+  @Getter @Setter private String endpoint;
 
-  private String protocol;
+    /**
+   * Set the OLTP transport protocol.
+   *
+   * <p>Options MUST be one of:
+   *
+   * <ul>
+   *   <li>grpc
+   *   <li>http/protobuf
+   * </ul>
+   */
+  @Getter @Setter private String protocol;
 
   /** Custom HTTP headers you want to pass to the collector, for example auth headers. */
   private Map<String, String> headers;
 
-  private Duration timeout;
+  @Getter @Setter private Duration timeout;
 
   public OpenTelemetryConfig() {
     super();
     this.headers = new HashMap<>();
     this.timeout = Duration.ofSeconds(10);
-  }
-
-  public String getServiceName() {
-    return serviceName;
-  }
-
-  public void setServiceName(String serviceName) {
-    this.serviceName = StringUtils.trim(serviceName);
-  }
-
-  public String getEndpoint() {
-    return endpoint;
-  }
-
-  public void setEndpoint(String endpoint) {
-    this.endpoint = StringUtils.trim(endpoint);
   }
 
   public Map<String, String> getHeaders() {
@@ -95,31 +92,5 @@ public class OpenTelemetryConfig {
         headers.put(name, value);
       }
     }
-  }
-
-  public String getProtocol() {
-    return protocol;
-  }
-
-  /**
-   * Set the OLTP transport protocol.
-   *
-   * <p>Options MUST be one of:
-   *
-   * <ul>
-   *   <li>grpc
-   *   <li>http/protobuf
-   * </ul>
-   */
-  public void setProtocol(String protocol) {
-    this.protocol = protocol;
-  }
-
-  public Duration getTimeout() {
-    return timeout;
-  }
-
-  public void setTimeout(Duration timeout) {
-    this.timeout = timeout;
   }
 }

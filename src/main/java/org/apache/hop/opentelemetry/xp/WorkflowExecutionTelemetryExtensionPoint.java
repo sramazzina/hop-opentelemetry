@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.hop.opentelemetry;
+package org.apache.hop.opentelemetry.xp;
 
 import io.opentelemetry.api.GlobalOpenTelemetry;
 import io.opentelemetry.api.common.Attributes;
@@ -35,6 +35,7 @@ import org.apache.hop.core.extension.IExtensionPoint;
 import org.apache.hop.core.logging.ILogChannel;
 import org.apache.hop.core.variables.IVariables;
 import org.apache.hop.execution.ExecutionType;
+import org.apache.hop.opentelemetry.HopAttributes;
 import org.apache.hop.workflow.IActionListener;
 import org.apache.hop.workflow.WorkflowMeta;
 import org.apache.hop.workflow.action.ActionMeta;

@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.apache.hop.opentelemetry;
+package org.apache.hop.opentelemetry.xp;
 
 import io.opentelemetry.api.trace.Span;
 import io.opentelemetry.context.Context;
@@ -23,6 +23,7 @@ import org.apache.hop.core.IExtensionData;
 import org.apache.hop.core.logging.ILoggingObject;
 import org.apache.hop.core.util.Utils;
 import org.apache.hop.core.variables.IVariables;
+import org.apache.hop.opentelemetry.HopAttributes;
 import org.apache.hop.pipeline.transform.ITransform;
 import org.apache.hop.workflow.action.IAction;
 

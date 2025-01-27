@@ -37,7 +37,7 @@
 	</fileSets>
 	<dependencySets>
 		<dependencySet>
-			<useProjectArtifact>false</useProjectArtifact>
+			<useProjectArtifact>true</useProjectArtifact>
 			<includes>
 				<include>org.apache.hop:hop-opentelemetry:jar</include>
 			</includes>
